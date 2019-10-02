@@ -5,7 +5,7 @@ import * as MultiStep from "../components/MultiStepForm/MultiStepForm";
 import HomePage from "../components/Layout/HomePage";
 import authContext from "../context/authContext";
 import "bulma";
-import "./index.module.scss";
+import "./index.scss";
 import './reset.scss'
 
 const SignUp = () => {

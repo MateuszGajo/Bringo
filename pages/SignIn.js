@@ -4,7 +4,7 @@ import HomePage from "../components/Layout/HomePage";
 import SignInCredentials from "../components/Credentials/SignInCredentials";
 import AuthContext from "../context/authContext";
 import "bulma";
-import "./index.module.scss";
+import "./index.scss";
 import './reset.scss'
 
 const SignIn = () => {
