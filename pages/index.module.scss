@@ -1,0 +1,25 @@
+.wrapper {
+  height: 100vh;
+}
+
+.column:first-child .wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.column:nth-of-type(2) .wrapper {
+  background-color: #11999e;
+}
+
+.column:first-child .wrapper > * {
+  text-align: center;
+}
+.title-color {
+  color: #11999e;
+}
+p.is-danger{
+  text-shadow: 0 0 4px black;
+  font-size: 15px;
+  font-weight: bold;
+}
