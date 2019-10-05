@@ -1,30 +1,30 @@
-import React, { useState,useEffect,useRef } from "react";
-import { MdEmail,MdLock } from "react-icons/md";
-import cx from 'classnames'
-const SignIn = ({creds,setCreds,validation,errors:{password="",confirmPassword="",email=""}}) => {
-    const [inputs, setInputs] = useState({
-        email:  creds.email,
-        password: creds.password,
-        confirmPassword: creds.confirmPassword
-      });
-      const handleInputChange = (e)=>{
-        validation(e)
-        setCreds({...inputs,[e.target.name]:e.target.value})
-        
-      }
+import React, { useState, useEffect, useRef } from "react";
+import { MdEmail, MdLock } from "react-icons/md";
+import cx from "classnames";
+const SignIn = ({ creds, setCreds, errors }) => {
+  const { emailError, passwordError, confirmPasswordError } = errors;
+  const [inputs, setInputs] = useState({
+    email: creds.email,
+    password: creds.password,
+    confirmPassword: creds.confirmPassword
+  });
+  const handleInputChange = e => {
+    setCreds({ ...inputs, [e.target.name]: e.target.value });
+  };
 
-      useEffect(()=>{
-        setInputs({...creds})
-      },[creds])
+  useEffect(() => {
+    setInputs({ ...creds });
+  }, [creds]);
+
   return (
     <>
       <div className="field">
         <label className="label">Email</label>
         <div className="control has-icons-left ">
           <input
-            className={cx('input',{
-                'is-danger':email.length 
-              })}
+            className={cx("input", {
+              "is-danger": emailError
+            })}
             type="text"
             placeholder="E-mail"
             name="email"
@@ -32,18 +32,18 @@ const SignIn = ({creds,setCreds,validation,errors:{password="",confirmPassword="
             value={inputs.email}
           />
           <span className="icon is-small is-left">
-          <MdEmail />
+            <MdEmail />
           </span>
         </div>
-        <p className="help is-danger">{ email? email: null}</p>
+        <p className="help is-danger">{emailError && emailError}</p>
       </div>
       <div className="field">
         <label className="label">Hasło</label>
         <div className="control has-icons-left">
           <input
-            className={cx('input',{
-                'is-danger':password.length 
-              })}
+            className={cx("input", {
+              "is-danger": passwordError
+            })}
             type="password"
             placeholder="Hasło"
             name="password"
@@ -51,17 +51,17 @@ const SignIn = ({creds,setCreds,validation,errors:{password="",confirmPassword="
             value={inputs.password}
           />
           <span className="icon is-small is-left">
-            <MdLock/>
+            <MdLock />
           </span>
         </div>
-        <p className="help is-danger">{ password? password: null}</p>
+        <p className="help is-danger">{passwordError && passwordError}</p>
       </div>
-        <div className="field">
+      <div className="field">
         <label className="label">Powtórz hasło</label>
         <div className="control has-icons-left">
           <input
-            className={cx('input',{
-              'is-danger':confirmPassword.length 
+            className={cx("input", {
+              "is-danger": confirmPasswordError
             })}
             type="password"
             placeholder="Powtórz hasło"
@@ -70,12 +70,13 @@ const SignIn = ({creds,setCreds,validation,errors:{password="",confirmPassword="
             value={inputs.confirmPassword}
           />
           <span className="icon is-small is-left">
-          <MdLock/>
+            <MdLock />
           </span>
         </div>
-        <p className="help is-danger">{ confirmPassword? confirmPassword: null}</p>
+        <p className="help is-danger">
+          {confirmPasswordError && confirmPasswordError}
+        </p>
       </div>
-        
     </>
   );
 };

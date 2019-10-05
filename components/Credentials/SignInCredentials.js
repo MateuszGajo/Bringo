@@ -1,15 +1,16 @@
-import React, { useState,useEffect } from "react";
-import { MdEmail,MdLock } from "react-icons/md";
-const SignIn = ({  creds,setCreds }) => {
- const [inputs,setInputs] = useState({
-   email:creds.email,
-  password:creds.password})
-  const handleInputChange =(e)=>{
-    setCreds({...inputs,[e.target.name]:e.target.value})
-  }
-  useEffect(()=>{
-    setInputs({...creds})
-  },[creds])
+import React, { useState, useEffect } from "react";
+import { MdEmail, MdLock } from "react-icons/md";
+const SignIn = ({ creds, setCreds }) => {
+  const [inputs, setInputs] = useState({
+    email: creds.email,
+    password: creds.password
+  });
+  const handleInputChange = e => {
+    setCreds({ ...inputs, [e.target.name]: e.target.value });
+  };
+  useEffect(() => {
+    setInputs({ ...creds });
+  }, [creds]);
   return (
     <>
       <div className="field">
@@ -24,10 +25,10 @@ const SignIn = ({  creds,setCreds }) => {
             value={inputs.email}
           />
           <span className="icon is-small is-left">
-          <MdEmail />
+            <MdEmail />
           </span>
         </div>
-        <p className="help is-success">This username is available</p>
+        <p className="help is-success"></p>
       </div>
       <div className="field">
         <label className="label">Hasło</label>
@@ -41,12 +42,11 @@ const SignIn = ({  creds,setCreds }) => {
             value={inputs.password}
           />
           <span className="icon is-small is-left">
-            <MdLock/>
+            <MdLock />
           </span>
         </div>
-        <p className="help is-danger">This email is invalid</p>
+        <p className="help is-danger"></p>
       </div>
-     
     </>
   );
 };
