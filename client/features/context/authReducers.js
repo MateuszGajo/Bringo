@@ -1,74 +1,111 @@
+
 const authReducer = (state, action) => {
   switch (action.type) {
+
     case "EMAIL_ERROR":
       return {
         ...state,
-        errors: {
-          ...state.errors,
+        registerErrors: {
+          ...state.registerErrors,
           emailError: action.msg
         }
       };
+
     case "PASSWORD_ERROR":
       return {
         ...state,
-        errors: {
-          ...state.errors,
+        registerErrors: {
+          ...state.registerErrors,
           passwordError: action.msg
         }
       };
+
     case "CONFIRMPASSWORD_ERROR":
       return {
         ...state,
-        errors: {
-          ...state.errors,
+        registerErrors: {
+          ...state.registerErrors,
           confirmPasswordError: action.msg
         }
       };
+
     case "FIRSTNAME_ERROR":
       return {
         ...state,
-        errors: {
-          ...state.errors,
+        registerErrors: {
+          ...state.registerErrors,
           firstNameError: action.msg
         }
       };
+
     case "LASTNAME_ERROR":
       return {
         ...state,
-        errors: {
-          ...state.errors,
+        registerErrors: {
+          ...state.registerErrors,
           lastNameError: action.msg
         }
       };
+
     case "PHONENUMBER_ERROR":
       return {
         ...state,
-        errors: {
-          ...state.errors,
+        registerErrors: {
+          ...state.registerErrors,
           phoneNumberError: action.msg
         }
       };
-      case "REGISTER_ERROR":
-        return {
+
+    case "REGISTER_CONNECTION_ERROR":
+      return {
       ...state,
-      errors:{
-        ...state.errors,
-        registerError:action.msg
+      registerErrors:{
+        ...state.registerErrors,
+        connectionError:action.msg
       }
     }
-    case "SIGNIN_SUCCESS":
-      return {
+
+    case "REGISTER_SUCCESS":
+      return{
         ...state,
-        user: action.token
-      };
-    case "SIGNUP_SUCCESS":
-      return {
-        ...state
-      };
+        registerErrors:{}
+      }
+
+    case "LOGIN_EMAIL_ERROR":
+        return{
+          ...state,
+          loginErrors:{
+            emailError:action.msg
+          }
+        }
+
+    case "LOGIN_PASSWORD_ERROR":
+        return{
+          ...state,
+          loginErrors:{
+            passwordError:action.msg
+        }
+      }
+
+      case "LOGIN_CONNECTION_ERROR":
+        return{
+          ...state,
+          loginErrors:{
+            connectionError:action.msg
+        }
+      }
+
+      case "LOGIN_SUCCESS":
+        return{
+          ...state,
+          loginErrors:{}
+        }
+     
       case "LOGIN_ERROR":
         return {
-    ...state
+        ...state
       }
+
     default:
       return state;
   }

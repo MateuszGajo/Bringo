@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { MdEmail, MdLock } from "react-icons/md";
 
-const SignIn = ({ creds, setCreds }) => {
+const SignIn = ({ creds, setCreds,loginErrors }) => {
+
+  const {emailError, passwordError,connectionError} = loginErrors;
   const [inputs, setInputs] = useState({
     email: creds.email,
     password: creds.password
@@ -28,8 +30,9 @@ const SignIn = ({ creds, setCreds }) => {
             <MdEmail />
           </span>
         </div>
-        <p className="help is-success"></p>
+        <p className="help is-danger">{emailError && emailError}</p>
       </div>
+
       <div className="field">
         <label className="label">Hasło</label>
         <div className="control has-icons-left">
@@ -45,8 +48,9 @@ const SignIn = ({ creds, setCreds }) => {
             <MdLock />
           </span>
         </div>
-        <p className="help is-danger"></p>
+        <p className="help is-danger">{passwordError && passwordError}</p>
       </div>
+      <p className="help is-danger">{connectionError && connectionError}</p>
     </>
   );
 };

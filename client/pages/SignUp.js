@@ -12,7 +12,7 @@ import "./reset.scss";
 
 
 const SignUp = () => {
-  const { register, errors } = useContext(authContext);
+  const { register, registerErrors } = useContext(authContext);
   const [creds, setCreds] = useState({
     email: "",
     password: "",
@@ -37,14 +37,14 @@ const SignUp = () => {
               <MultiStep.SignUpCredentials
                 creds={creds}
                 setCreds={setCreds}
-                errors={errors}
+                registerErrors={registerErrors}
               />
             </MultiStep.Step>
             <MultiStep.Step>
               <MultiStep.PersonalData
                 setUserInfo={setUserInfo}
                 userInfo={userInfo}
-                errors={errors}
+                registerErrors={registerErrors}
               />
             </MultiStep.Step>
           </MultiStep.StepWrapper>

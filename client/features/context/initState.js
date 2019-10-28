@@ -1,5 +1,5 @@
 export const initState = {
-    errors: {
+    registerErrors: {
         authError: "",
         emailError: "",
         passwordError: "",
@@ -7,6 +7,11 @@ export const initState = {
         firstNameError: "",
         lastNameError: "",
         phoneNumberError: "",
-        registerError:""
+        connectionError:""
+    },
+    loginErrors:{
+        emailError:"",
+        passwordError:"",
+        connectionError:""
     }
 };

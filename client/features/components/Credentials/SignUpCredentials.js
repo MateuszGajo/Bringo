@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { MdEmail, MdLock } from "react-icons/md";
 import cx from "classnames";
-const SignIn = ({ creds, setCreds, errors }) => {
-  const { emailError, passwordError, confirmPasswordError } = errors;
+const SignIn = ({ creds, setCreds, registerErrors }) => {
+  const { emailError, passwordError, confirmPasswordError } = registerErrors;
   const [inputs, setInputs] = useState({
     email: creds.email,
     password: creds.password,

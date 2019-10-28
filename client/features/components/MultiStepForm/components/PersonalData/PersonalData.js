@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import cx from "classnames";
-const UserInfo = ({ setUserInfo, userInfo, errors }) => {
-  const { firstNameError, lastNameError, phoneNumberError, registerError } = errors;
+const UserInfo = ({ setUserInfo, userInfo, registerErrors}) => {
+  const { firstNameError, lastNameError, phoneNumberError, connectionError } = registerErrors;
   const [inputs, setInputs] = useState({
     firstName: userInfo.firstName,
     lastName: userInfo.lastName,
@@ -55,7 +55,7 @@ const UserInfo = ({ setUserInfo, userInfo, errors }) => {
         />
         <p className="help is-danger">{phoneNumberError && phoneNumberError}</p>
       </div>
-      <p className="help is-danger">{registerError && registerError}</p>
+      <p className="help is-danger">{connectionError && connectionError}</p>
     </>
   );
 };

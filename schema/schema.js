@@ -15,7 +15,10 @@ const typeDefs = gql`
         id:ID!,
         email: String,
         password: String,
-        token:String
+        token:String,
+        emailError:String,
+        passwordError:String,
+        connectionError:String
     }
     type SignUpType{
         id: ID!
@@ -24,7 +27,9 @@ const typeDefs = gql`
         firstName: String
         lastName: String
         phoneNumber: Int
-        token:String
+        token:String,
+        userError:String,
+        connectionError:String
     }
     type Query {
       login(email:String, password: String):loginType,
@@ -36,9 +41,8 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    login: (parent, args,context) => {
+    login: (parent, args) => {
       const {email,password} = args;
-      console.log(context)
       return UserModel.findOne({email}).then(user=>{
         if(user){
           if(UserModel().comparePassword(password,user.password)){
@@ -53,6 +57,21 @@ const resolvers = {
                 token
               }
           }
+          else{
+            return{
+              passwordError:"Podane hasło jest błędne"
+            }
+          }
+        }
+        else{
+          return{
+            emailError:"Użytkownik nie istnieje"
+          }
+        }
+      })
+      .catch(err=>{
+        return{
+          connectionError:"Błąd łącznia z bazą danych. Spróbuj później"
         }
       })
     }
@@ -78,16 +97,18 @@ const resolvers = {
               }
             } )
             .catch(err => {
-              throw new Error(`Błąd łaczenia się z bazą: ${err}`)
+              return{
+                connectionError:"Błąd łącznia z bazą danych. Spróbuj za później"
+              }
             })
         }
         else {
-          throw new Error("użytkownik już istnieje")
+          return{
+            userError:"Użytkownik już istnieje"
+          }
         }
-
       })
     }
-    
   }
 };
 

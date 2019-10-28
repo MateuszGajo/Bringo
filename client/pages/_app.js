@@ -14,15 +14,19 @@ const MyApp = ({ Component, pageProps, apollo }) => {
   
   const signIn = (creds) => {
       const {email,password} = creds;
+      
       apollo.mutate({ mutation: LOGIN_QUERY, variables: { email, password } })
-      .then(resp=>{
-        setCookie('token',resp.data.login.token);
-        Router.push('/')
+      .then(({data:{login:{token,emailError,passwordError,connectionError}}})=>{
+        if(emailError)  return  dispatch({ type: "LOGIN_EMAIL_ERROR", msg: emailError });
+        else if(passwordError)  return  dispatch({ type: "LOGIN_PASSWORD_ERROR", msg: passwordError });
+        else if(connectionError) return dispatch({type: "LOGIN_CONNECTION_ERROR",msg:connectionError})
+        dispatch({ type: "LOGIN_SUCCESS" })
+        setCookie('token',token);
+        Router.push('/');
       })
       .catch(err=>{
-        dispatch({ type: "LOGIN_ERROR", msg: "Błąd łączenia z baza danych" });
+        dispatch({ type: "LOGIN_CONNECTION_ERROR", msg: "Błąd łączenia z baza danych" });
       })
-    
   };
 
   const register = (registerValues) => {
@@ -30,28 +34,31 @@ const MyApp = ({ Component, pageProps, apollo }) => {
 
     if (RegisterFormValidation({ ...registerValues, dispatch })) {
       apollo.mutate({ mutation: ADD_USER, variables: { email, password, firstName, lastName, phoneNumber: Number(phoneNumber) } })
-      .then(resp => {
-        setCookie('token',resp.data.createUser.token);
+      .then(({data:{createUser:{token,userError,connectionError}}}) => {
+        if(userError) return dispatch({type:"EMAIL_ERROR",msg:userError});
+        else if (connectionError) return dispatch({type:"REGISTER_CONNECTION_ERROR",msg:connectionError});
+        console.log(userError,connectionError)
+        dispatch({type:"REGISTER_SUCCESS"});
+        setCookie('token',token);
         Router.push('/')})
       .catch(err => {
-        console.log('blad rejstracji')
-        dispatch({ type: "REGISTER_ERROR", msg: "Błąd łączenia z baza danych" });
+        dispatch({ type: "REGISTER_CONNECTION_ERROR", msg: "Błąd łączenia z baza danych" });
       })
     }
   };
 
   const setCookie = (name,value)=>{
     const data = new Date();
-          data.setTime(data.getTime() + 12*60*60*1000);
-          document.cookie=`${name}=${value}; expires=${data}`;
+    data.setTime(data.getTime() + 12*60*60*1000);
+    document.cookie=`${name}=${value}; expires=${data}`;
   }
 
   const deleteCookie=(name)=> {
     const data = new Date();
     data.setTime(data.getMonth()-1);
-     name = encodeURIComponent(name);
+    name = encodeURIComponent(name);
     document.cookie = name + "=; expires=" + data.toGMTString();
-    Router.push('/signin')
+    Router.push('/signin');
 }
 
   return (

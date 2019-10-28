@@ -1,13 +1,18 @@
 import React from "react";
 export default React.createContext({
-  errors: {
+  registerErrors: {
     authError: "",
     emailError: "",
     passwordError: "",
     confirmPasswordError: "",
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    registerError:""
+    firstNameError: "",
+    lastNameError: "",
+    phoneNumberError: "",
+    connectionError:""
+  },
+  loginErrors:{
+  emailError:"",
+  passwordError:"",
+  connectionError:""
   }
 });

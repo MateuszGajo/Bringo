@@ -14,18 +14,17 @@ import './reset.scss'
 const SignIn = () => {
 
   const [creds, setCreds] = useState({ email: "", password: "" });
-  const { signIn } = useContext(AuthContext);
+  const { signIn, loginErrors } = useContext(AuthContext);
 
   const handleSubmit = e => {
     e.preventDefault();
     signIn(creds);
-
   };
 
   return (
     <AuthPage>
       <form onSubmit={handleSubmit}>
-        <SignInCredentials componentName="signin" setCreds={setCreds} creds={creds} />
+        <SignInCredentials componentName="signin" setCreds={setCreds} creds={creds} loginErrors={loginErrors} />
         <button className="button">Zaloguj się</button>
       </form>
       <p>
