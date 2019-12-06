@@ -1,0 +1,19 @@
+.menu {
+  width: 60vw;
+}
+.menu a {
+  height: 15vh;
+  background-color: #11999e;
+  color: white;
+  font-size: 18px;
+  transition: font-size 0.3s;
+}
+
+.menu a + a {
+  margin-top: 5vh;
+}
+
+.menu a.button:hover {
+  font-size: 20px;
+  color: white;
+}

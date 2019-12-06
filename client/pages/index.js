@@ -1,45 +1,32 @@
-import React,{useContext} from "react";
-import Router from 'next/router'
-import Axios from "axios";
-import cookies from 'next-cookies';
-import {SERVER_URL} from '../configs';
-import authContext from "../features/context/authContext"; 
+import React from "react";
+import HomePage from "../features/components/Layout/HomePage";
+import { isLogged, getSession } from "../helper";
 import "bulma";
-import "./index.scss";
-import './reset.scss';
+import "./styles/index.scss";
+import "./styles/reset.scss";
+import "./styles/customize.scss";
 
-
-const Home = () => {
-  const {deleteCookie} = useContext(authContext);
+const Home = ({ isSession }) => {
   return (
-    <div>
-      <a href="#" onClick={()=>deleteCookie('token')}>
-        Wyloguj się
-      </a>
-    </div>
-  )
-}
+    <HomePage>
+      <div className="menu">
+        <a className="button is-fullwidth" href="/learning">
+          {isSession ? "Kontynuuj naukę" : "Zacznij nową sesje"}
+        </a>
+        <a className="button is-fullwidth" href="/ranking">
+          Ranking
+        </a>
+      </div>
+    </HomePage>
+  );
+};
 
-Home.getInitialProps = async (ctx) => {
-  const {res} = ctx;
-  const {token} = cookies(ctx);
-  const checkToken  = await Axios.get(SERVER_URL +"/auth/me",{headers: {
-    'Authorization':token||"",
-    'Content-Type': 'application/x-www-form-urlencoded'
-}})
-
-if(res && !checkToken.data.success){
-    res.writeHead(302, {
-      Location: '/signin'
-    })
-    res.end()
-  }
-  else if (!checkToken.data.success){
-    Router.push('/signin')
-  }
-return {}
-}
-
+Home.getInitialProps = async ctx => {
+  await isLogged(ctx, "/signin");
+  const { isSession } = await getSession(ctx);
+  return {
+    isSession
+  };
+};
 
 export default Home;
-

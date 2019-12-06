@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles/authPage.scss";
 
 const AuthPage = ({ children }) => {
   return (

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import SignUpCredentials from "../Credentials/SignUpCredentials";
 import PersonalData from "./components/PersonalData/PersonalData";
 import StepWrapper from "./components/StepWrapper/StepWrapper";

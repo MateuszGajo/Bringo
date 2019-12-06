@@ -1,0 +1,37 @@
+.wrapper .navbar.main {
+  height: 10vh;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.navbar .navbar-brand .item-navbar {
+  display: flex;
+  align-items: center;
+  color: #11999e;
+  padding-left: 5px;
+}
+
+.logout {
+  display: flex;
+  align-items: center;
+  color: #40514e;
+  padding-right: 10px;
+}
+.logout:hover {
+  color: #667471;
+}
+
+.navbar-menu > * {
+  display: flex;
+  align-items: center;
+  color: #40514e;
+}
+
+.navbar a.navbar-item:hover {
+  color: none;
+}
+.wrapper .box-content {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+  padding-top: 5vh;
+}

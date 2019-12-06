@@ -7,11 +7,12 @@ export const initState = {
         firstNameError: "",
         lastNameError: "",
         phoneNumberError: "",
-        connectionError:""
+        connectionError: "",
+        isFieldsError: false
     },
-    loginErrors:{
-        emailError:"",
-        passwordError:"",
-        connectionError:""
+    loginErrors: {
+        emailError: "",
+        passwordError: "",
+        connectionError: ""
     }
 };

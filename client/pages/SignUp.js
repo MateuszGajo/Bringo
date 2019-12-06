@@ -1,15 +1,12 @@
 import React, { useState, useContext } from "react";
 import Link from "next/link";
-import Axios from "axios";
-import cookies from 'next-cookies';
 import * as MultiStep from "../features/components/MultiStepForm/MultiStepForm";
 import AuthPage from "../features/components/Layout/AuthPage";
 import authContext from "../features/context/authContext";
-import {SERVER_URL} from '../configs';
+import { isLogged } from "../helper";
 import "bulma";
-import "./index.scss";
-import "./reset.scss";
-
+import "./styles/reset.scss";
+import "./styles/customize.scss";
 
 const SignUp = () => {
   const { register, registerErrors } = useContext(authContext);
@@ -32,6 +29,9 @@ const SignUp = () => {
     <AuthPage>
       <MultiStep.Wizard>
         <form onSubmit={handleSubmit}>
+          {registerErrors.isFieldsError ? (
+            <p className="help is-danger">Popraw zaznaczone pola</p>
+          ) : null}
           <MultiStep.StepWrapper>
             <MultiStep.Step>
               <MultiStep.SignUpCredentials
@@ -61,24 +61,9 @@ const SignUp = () => {
   );
 };
 
-SignUp.getInitialProps = async (ctx) => {
-  const {res} = ctx;
-  const {token} = cookies(ctx);
-  const checkToken  = await Axios.get(SERVER_URL +"/auth/me",{headers: {
-    'Authorization':token||"",
-    'Content-Type': 'application/x-www-form-urlencoded'
-}})
-
-if(res && checkToken.data.success){
-    res.writeHead(302, {
-      Location: '/'
-    })
-    res.end()
-  }
-  else if (checkToken.data.success){
-    Router.push('/')
-  }
-return {}
-}
+SignUp.getInitialProps = async ctx => {
+  await isLogged(ctx, "/");
+  return {};
+};
 
 export default SignUp;

@@ -1,13 +1,12 @@
-
 const authReducer = (state, action) => {
   switch (action.type) {
-
     case "EMAIL_ERROR":
       return {
         ...state,
         registerErrors: {
           ...state.registerErrors,
-          emailError: action.msg
+          emailError: action.msg,
+          isFieldsError: true
         }
       };
 
@@ -16,7 +15,8 @@ const authReducer = (state, action) => {
         ...state,
         registerErrors: {
           ...state.registerErrors,
-          passwordError: action.msg
+          passwordError: action.msg,
+          isFieldsError: true
         }
       };
 
@@ -25,7 +25,8 @@ const authReducer = (state, action) => {
         ...state,
         registerErrors: {
           ...state.registerErrors,
-          confirmPasswordError: action.msg
+          confirmPasswordError: action.msg,
+          isFieldsError: true
         }
       };
 
@@ -34,7 +35,8 @@ const authReducer = (state, action) => {
         ...state,
         registerErrors: {
           ...state.registerErrors,
-          firstNameError: action.msg
+          firstNameError: action.msg,
+          isFieldsError: true
         }
       };
 
@@ -43,7 +45,8 @@ const authReducer = (state, action) => {
         ...state,
         registerErrors: {
           ...state.registerErrors,
-          lastNameError: action.msg
+          lastNameError: action.msg,
+          isFieldsError: true
         }
       };
 
@@ -52,64 +55,73 @@ const authReducer = (state, action) => {
         ...state,
         registerErrors: {
           ...state.registerErrors,
-          phoneNumberError: action.msg
+          phoneNumberError: action.msg,
+          isFieldsError: true
         }
       };
 
-    case "REGISTER_CONNECTION_ERROR":
+    case "VALIDED_FIELDS": {
       return {
-      ...state,
-      registerErrors:{
-        ...state.registerErrors,
-        connectionError:action.msg
-      }
+        ...state,
+        registerErrors: {
+          ...state.registerErrors,
+          isFieldsError: false
+        }
+      };
     }
 
-    case "REGISTER_SUCCESS":
-      return{
+    case "REGISTER_CONNECTION_ERROR":
+      return {
         ...state,
-        registerErrors:{}
-      }
+        registerErrors: {
+          ...state.registerErrors,
+          connectionError: action.msg
+        }
+      };
+    case "REGISTER_SUCCESS":
+      return {
+        ...state,
+        registerErrors: {}
+      };
 
     case "LOGIN_EMAIL_ERROR":
-        return{
-          ...state,
-          loginErrors:{
-            emailError:action.msg
-          }
+      return {
+        ...state,
+        loginErrors: {
+          emailError: action.msg
         }
+      };
 
     case "LOGIN_PASSWORD_ERROR":
-        return{
-          ...state,
-          loginErrors:{
-            passwordError:action.msg
+      return {
+        ...state,
+        loginErrors: {
+          passwordError: action.msg
         }
-      }
+      };
 
-      case "LOGIN_CONNECTION_ERROR":
-        return{
-          ...state,
-          loginErrors:{
-            connectionError:action.msg
+    case "LOGIN_CONNECTION_ERROR":
+      return {
+        ...state,
+        loginErrors: {
+          connectionError: action.msg
         }
-      }
+      };
 
-      case "LOGIN_SUCCESS":
-        return{
-          ...state,
-          loginErrors:{}
-        }
-     
-      case "LOGIN_ERROR":
-        return {
+    case "LOGIN_SUCCESS":
+      return {
+        ...state,
+        loginErrors: {}
+      };
+
+    case "LOGIN_ERROR":
+      return {
         ...state
-      }
+      };
 
     default:
       return state;
   }
-  
 };
 
 export default authReducer;
