@@ -3,9 +3,9 @@ import "./styles/authPage.scss";
 
 const AuthPage = ({ children }) => {
   return (
-    <div className="wrapper columns is-gapless">
+    <div className="is-fullheight columns is-gapless">
       <div className="column">
-        <div className="wrapper box">
+        <div className="is-fullheight box">
           <h1 className="title is-1 title-color">Bringo</h1>
           <h3 className="title is-3">Twój internetowy nauczyciel</h3>
           <h4 className="subtitle is-3">
@@ -14,7 +14,7 @@ const AuthPage = ({ children }) => {
         </div>
       </div>
       <div className="column">
-        <div className="wrapper box">{children}</div>
+        <div className="is-fullheight box">{children}</div>
       </div>
     </div>
   );

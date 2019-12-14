@@ -17,3 +17,15 @@
   font-size: 20px;
   color: white;
 }
+
+@media (max-width: 1023px) {
+  .menu {
+    width: 90vw;
+  }
+}
+
+@media (max-width: 1023px) and (orientation: landscape) {
+  .menu a {
+    height: 25vh;
+  }
+}

@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./styles/wordSubmit.scss";
 const WordSubmit = ({ handleSubmit, selectedWord, setTypedWord }) => {
   return (
     <form onSubmit={handleSubmit}>

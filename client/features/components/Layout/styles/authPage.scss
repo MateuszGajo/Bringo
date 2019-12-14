@@ -1,13 +1,13 @@
-.column:first-child .wrapper {
+.column:first-child .box {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.column:nth-of-type(2) .wrapper {
+.column:nth-of-type(2) .box {
   background-color: #11999e;
 }
 
-.column:first-child .wrapper > * {
+.column:first-child .box > * {
   text-align: center;
 }

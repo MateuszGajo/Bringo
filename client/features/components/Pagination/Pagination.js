@@ -3,14 +3,14 @@ import cx from "classnames";
 
 const Pagination = ({ currentPage, lastPage, setCurrentPage }) => {
   return (
-    <nav class="pagination" role="navigation" aria-label="pagination">
+    <nav className="pagination" role="navigation" aria-label="pagination">
       <a
         className={cx("pagination-previous", {
           isDisabled: currentPage == 1
         })}
         onClick={() => setCurrentPage(currentPage - 1)}
       >
-        Previous
+        Poprzednia
       </a>
       <a
         className={cx("pagination-next", {
@@ -18,13 +18,13 @@ const Pagination = ({ currentPage, lastPage, setCurrentPage }) => {
         })}
         onClick={() => setCurrentPage(currentPage + 1)}
       >
-        Next page
+        Następna
       </a>
-      <ul class="pagination-list">
+      <ul className="pagination-list">
         <li>
           {currentPage > 2 ? (
             <a
-              class="pagination-link"
+              className="pagination-link"
               onClick={() => {
                 setCurrentPage(1);
               }}
@@ -35,13 +35,13 @@ const Pagination = ({ currentPage, lastPage, setCurrentPage }) => {
         </li>
         {currentPage >= 4 ? (
           <li>
-            <span class="pagination-ellipsis">&hellip;</span>
+            <span className="pagination-ellipsis">&hellip;</span>
           </li>
         ) : null}
         <li>
           {currentPage > 1 ? (
             <a
-              class="pagination-link"
+              className="pagination-link"
               onClick={() => {
                 setCurrentPage(currentPage - 1);
               }}
@@ -52,7 +52,7 @@ const Pagination = ({ currentPage, lastPage, setCurrentPage }) => {
         </li>
         <li>
           <a
-            class="pagination-link is-current"
+            className="pagination-link is-current"
             onClick={() => {
               setCurrentPage(currentPage);
             }}
@@ -63,7 +63,7 @@ const Pagination = ({ currentPage, lastPage, setCurrentPage }) => {
         <li>
           {currentPage < lastPage ? (
             <a
-              class="pagination-link"
+              className="pagination-link"
               onClick={() => {
                 setCurrentPage(currentPage + 1);
               }}
@@ -74,13 +74,13 @@ const Pagination = ({ currentPage, lastPage, setCurrentPage }) => {
         </li>
         {currentPage < lastPage - 2 ? (
           <li>
-            <span class="pagination-ellipsis">&hellip;</span>
+            <span className="pagination-ellipsis">&hellip;</span>
           </li>
         ) : null}
         <li>
           {currentPage < lastPage - 1 ? (
             <a
-              class="pagination-link"
+              className="pagination-link"
               onClick={() => {
                 setCurrentPage(lastPage);
               }}

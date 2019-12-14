@@ -1,12 +1,11 @@
-.wrapper .navbar.main {
-  height: 10vh;
+.wrapper .main-navbar {
+  min-height: 10vh;
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.12);
 }
 
-.navbar .navbar-brand .item-navbar {
+.main-navbar .navbar-brand .item-navbar {
   display: flex;
   align-items: center;
-  color: #11999e;
   padding-left: 5px;
 }
 
@@ -26,12 +25,111 @@
   color: #40514e;
 }
 
-.navbar a.navbar-item:hover {
-  color: none;
-}
 .wrapper .box-content {
+  flex-grow: 1;
   display: flex;
   justify-content: center;
-  height: 90vh;
+  width: 90vw;
+  margin: 0 auto;
   padding-top: 5vh;
+}
+
+.navbar-mobile-menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-mobile-menu .navbar-start,
+.navbar-mobile-menu .navbar-end {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-mobile-menu .navbar-start .navbar-brand .item-navbar {
+  display: flex;
+}
+
+.navbar-mobile-menu .navbar-end {
+  align-items: center;
+  margin-right: 15px;
+}
+
+.navbar-mobile-menu .hamburger-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  transform: translateX(110%);
+  transition: transform 1s;
+}
+
+.navbar-mobile-menu .hamburger-menu.is-active {
+  transform: translateX(0);
+}
+
+.navbar-mobile-menu .hamburger-menu .close-nav {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 10px;
+}
+
+.navbar-mobile-menu .hamburger-menu .logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.navbar-mobile-menu .hamburger-menu .hamburger-menu-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 30px;
+}
+
+.navbar-mobile-menu .hamburger-menu .user-name {
+  padding-top: 40px;
+}
+
+.navbar-mobile-menu .hamburger-menu .user-name span {
+  padding-left: 20px;
+}
+
+.navbar-mobile-menu .hamburger-menu a.logout {
+  padding-top: 40px;
+}
+
+@media (max-width: 1023px) {
+  .wrapper .main-navbar {
+    min-height: auto;
+  }
+}
+
+@media (orientation: landscape) {
+  .navbar-mobile-menu .hamburger-menu .hamburger-menu-items {
+    font-size: 20px;
+  }
+
+  .navbar-mobile-menu .hamburger-menu .close-nav {
+    margin: 5px 10px;
+  }
+
+  .navbar-mobile-menu .hamburger-menu .logo {
+    padding: 5px 0;
+  }
+
+  .navbar-mobile-menu .hamburger-menu .user-name {
+    padding-top: 20px;
+  }
+
+  .navbar-mobile-menu .hamburger-menu a.logout {
+    padding-top: 20px;
+  }
 }

@@ -8,10 +8,11 @@ import Pagination from "../features/components/Pagination/Pagination";
 import "bulma";
 import "./styles/reset.scss";
 import "./styles/customize.scss";
+import "./styles/ranking.scss";
 
 const Ranking = ({ rankings, userId }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [lastPage, setLastPage] = useState(8);
+  const [lastPage, setLastPage] = useState(Math.ceil(rankings.length / 10));
 
   useEffect(() => {
     rankings.map((user, index) => {
@@ -19,12 +20,11 @@ const Ranking = ({ rankings, userId }) => {
         ? setCurrentPage(Math.ceil((index + 1) / 10))
         : null;
     });
-    setLastPage(Math.ceil(rankings.length / 10));
   }, [rankings]);
 
   return (
     <HomePage>
-      <div className="container">
+      <div className="container table-container">
         <table className="table is-fullwidth ">
           <thead>
             <tr>

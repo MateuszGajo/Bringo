@@ -1,4 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import cx from "classnames";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
 import authContext from "../../context/authContext";
 import "./styles/homePage.scss";
 
@@ -7,22 +10,72 @@ const HomePage = ({ children }) => {
     deleteCookie,
     userInfo: { firstName, lastName }
   } = useContext(authContext);
+
+  const [isOpenHamurger, setOpenHamurger] = useState(false);
   return (
     <div className="wrapper">
-      <nav className="navbar main">
-        <div className="navbar-menu">
-          <div className="navbar-start">
-            <div className="navbar-brand">
-              <a className="item-navbar is-size-3" href="/">
+      <nav className="main-navbar navbar-menu">
+        <div className="navbar-start">
+          <div className="navbar-brand">
+            <a className="item-navbar is-size-3 title-color" href="/">
+              Bringo
+            </a>
+          </div>
+        </div>
+        <div>{`${firstName} ${lastName}`}</div>
+        <div className="navbar-end">
+          <a className="logout" onClick={() => deleteCookie("token")}>
+            Wyloguj się
+          </a>
+        </div>
+      </nav>
+      <nav className="main-navbar navbar-mobile-menu is-hidden-desktop">
+        <div className="navbar-start">
+          <div className="navbar-brand">
+            <a
+              className="item-navbar is-size-3 title-color title-margin is-size-1"
+              href="/"
+            >
+              Bringo
+            </a>
+          </div>
+        </div>
+
+        <div className="navbar-end">
+          <FontAwesomeIcon
+            icon={faBars}
+            size="2x"
+            onClick={() => setOpenHamurger(true)}
+          />
+          <div
+            className={cx("hamburger-menu", {
+              "is-active": isOpenHamurger
+            })}
+          >
+            <div className="close-nav">
+              <FontAwesomeIcon
+                icon={faTimes}
+                size="3x"
+                color="#f65c78"
+                onClick={() => setOpenHamurger(false)}
+              />
+            </div>
+            <div className="logo">
+              <a className="is-size-1 title-color " href="/">
                 Bringo
               </a>
             </div>
-          </div>
-          <div>{`${firstName} ${lastName}`}</div>
-          <div className="navbar-end">
-            <a className="logout" onClick={() => deleteCookie("token")}>
-              Wyloguj się
-            </a>
+            <div className="hamburger-menu-items">
+              <p className="user-name">
+                <FontAwesomeIcon icon={faUser} size="lg" color="#11999e" />
+                <span>
+                  {firstName} {lastName}
+                </span>
+              </p>
+              <a className="logout" onClick={() => deleteCookie("token")}>
+                Wyloguj się
+              </a>
+            </div>
           </div>
         </div>
       </nav>

@@ -13,6 +13,11 @@
 .title-color {
   color: #11999e;
 }
+
+.title-margin {
+  margin: 10px 5px;
+}
+
 .is-danger {
   text-shadow: 0 0 4px black;
   font-size: 15px;
@@ -21,6 +26,8 @@
 
 .wrapper {
   height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .is-horizontal-center {
@@ -29,4 +36,17 @@
 
 .small-line-height {
   line-height: 0.5;
+}
+
+.main-navbar {
+  flex-grow: 0;
+}
+.is-fullheight {
+  height: 100vh;
+}
+
+@media (max-width: 1023px) and (orientation: portrait) {
+  html {
+    font-size: 20px;
+  }
 }

@@ -1,0 +1,34 @@
+nav.downbar {
+  background-color: #11999e;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+}
+
+.nav-mobile-downbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-mobile-downbar .navbar-start {
+  padding-bottom: 10px;
+}
+
+nav.downbar h4.subtitle.is-4 {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+@media (orientation: landscape) {
+  .nav-mobile-downbar {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .nav-mobile-downbar .navbar-start {
+    padding-bottom: 0;
+  }
+}

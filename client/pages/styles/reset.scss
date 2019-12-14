@@ -2,6 +2,14 @@
   display: none;
 }
 
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -15,4 +23,8 @@ input[type="number"] {
 a {
   color: black;
   font-weight: bold;
+}
+
+a:hover {
+  color: #29a3a8;
 }
