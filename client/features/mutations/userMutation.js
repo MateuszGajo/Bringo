@@ -24,9 +24,17 @@ export const ADD_USER = gql`
   }
 `;
 
-export const UPDATE_USER = gql`
-  mutation UpdateUser($userId: String, $score: Int) {
-    updateUser(userId: $userId, score: $score) {
+export const UPDATE_SCORE_USER = gql`
+  mutation UpdateScoreUser($userId: String, $score: Int) {
+    updateScoreUser(userId: $userId, score: $score) {
+      isUpdated
+    }
+  }
+`;
+
+export const UPDATE_LEVEL_USER = gql`
+  mutation UpdateLeveLUser($userId: String, $level: String) {
+    updateLevelUser(userId: $userId, level: $level) {
       isUpdated
     }
   }

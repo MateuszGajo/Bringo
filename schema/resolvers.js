@@ -1,5 +1,6 @@
 const UserModel = require("../models/user.model");
 const SessionModel = require("../models/session.model");
+const wordModel = require("../models/word.model");
 const {
   verifyLogging,
   createSession,
@@ -55,6 +56,16 @@ const resolvers = {
       })
         .then(resp => resp)
         .catch(err => new Error("can't find a users"));
+    },
+    getScoreUser: (parent, args) => {
+      const { userId } = args;
+      return UserModel.findOne({ _id: userId })
+        .then(resp => {
+          return {
+            score: resp.score
+          };
+        })
+        .catch(err => new Error("can't find a user"));
     }
   },
 
@@ -83,7 +94,7 @@ const resolvers = {
       return updateSessionStatistics(args);
     },
 
-    updateUser: (parents, args) => {
+    updateScoreUser: (parents, args) => {
       const { userId, score } = args;
 
       return UserModel.findOne({ _id: userId })
@@ -96,6 +107,28 @@ const resolvers = {
           };
         })
         .catch(err => new Error("can't update user"));
+    },
+    updateLevelUser: (parents, args) => {
+      const { userId, level } = args;
+      return UserModel.updateOne({ _id: userId }, { difficulty: level })
+        .then(resp => {
+          return {
+            isUpdated: true
+          };
+        })
+        .catch(err => new Error("can't find a user"));
+    },
+    addWord: (parents, args) => {
+      const { level, pl, en } = args;
+      wordModel
+        .findOne({ level })
+        .then(resp => {
+          const words = [...resp.words, { pl, en }];
+          resp.updateOne({ words }, (err, res) => {
+            if (err) return new Error("can't update");
+          });
+        })
+        .catch(err => console.log("error"));
     }
   }
 };

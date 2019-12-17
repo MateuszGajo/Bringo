@@ -5,6 +5,7 @@ import jwt_deocde from "jwt-decode";
 import { SERVER_URL } from "./configs";
 import GET_WORD from "./features/queries/wordQuery";
 import GET_SESSION from "./features/queries/sessionQuery";
+import GET_SCORE_USER from "./features/queries/scoreUserQuery";
 
 export const isLogged = async (ctx, redirectPath) => {
   const { res } = ctx;
@@ -45,7 +46,7 @@ export const loadSession = async ctx => {
   const getWords = async () =>
     await ctx.apolloClient.query({
       query: GET_WORD,
-      variables: { level: "A1", number: 2, userId: userInfo.id }
+      variables: { level: userInfo.difficulty, number: 2, userId: userInfo.id }
     });
 
   response = await getSession();
@@ -88,13 +89,29 @@ export const getSession = async ctx => {
     query: GET_SESSION,
     variables: { userId: userInfo.id }
   });
+
   const { sessionInfo, words } = session.data.getSession;
   const isSession = sessionInfo !== null && words.length > 0 ? true : false;
+  const isSessionEnd = sessionInfo !== null && words.length == 0 ? true : false;
 
   return {
     isSession,
+    isSessionEnd,
     sessionInfo,
-    userId: userInfo.id
+    userInfo
+  };
+};
+
+export const getScoreUser = async ctx => {
+  let { token } = cookies(ctx);
+  const userInfo = jwt_deocde(token);
+
+  const user = await ctx.apolloClient.query({
+    query: GET_SCORE_USER,
+    variables: { userId: userInfo.id }
+  });
+  return {
+    score: user.data.getScoreUser.score
   };
 };
 
@@ -144,4 +161,32 @@ export const scoreTable = level => {
     C2: 30
   };
   return table[level];
+};
+
+export const levelScoreTable = (userScore, sessionScore, difficulty) => {
+  const levelTable = {
+    0: "A1",
+    800: "A2",
+    2500: "B1",
+    10000: "B2",
+    50000: "C1",
+    250000: "C2"
+  };
+  const scoreArray = [200, 800, 2500, 10000, 50000, 250000];
+  let i = 0;
+  const allScore = Number(userScore) + sessionScore;
+
+  while (scoreArray[i] < userScore && i < scoreArray.length - 1) {
+    if (scoreArray[i + 1] > userScore) {
+      if (allScore >= scoreArray[i + 1]) {
+        return {
+          level: levelTable[scoreArray[i + 1]]
+        };
+      }
+    }
+    i++;
+  }
+  return {
+    level: null
+  };
 };

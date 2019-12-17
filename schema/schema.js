@@ -75,11 +75,25 @@ const typeDefs = gql`
     score: Int
   }
 
+  type addedWord {
+    pl: String
+    en: String
+  }
+
+  type scoreUser {
+    score: String
+  }
+
+  type updateLevel {
+    isUpdated: Boolean
+  }
+
   type Query {
     login(email: String, password: String): LoginType
     getWords(level: String, number: [Int], userId: String): Words
     getSession(userId: String): Session
     getRankings: [rankings]
+    getScoreUser(userId: String): scoreUser
   }
 
   type Mutation {
@@ -101,8 +115,10 @@ const typeDefs = gql`
       procentCorrectness: Int
       score: Int
     ): updateStatistics
-    updateUser(userId: String, score: Int): updateStatistics
+    updateScoreUser(userId: String, score: Int): updateStatistics
     removeSession(userId: String): deleteDocument
+    updateLevelUser(userId: String, level: String): updateLevel
+    addWord(level: String, pl: String, en: String): addedWord
   }
 `;
 

@@ -34,19 +34,20 @@ const verifyLogging = (user, email, password) => {
 const createSession = args => {
   const { level, number, userId } = args;
 
-  return WordModel.findOne({ level }).then(words => {
+  return WordModel.findOne({ level }).then(resp => {
+    console.log(resp);
     const randomNumbers = [];
     const wordsArray = [];
 
     while (randomNumbers.length < number) {
-      const r = Math.floor(Math.random() * 2);
+      const r = Math.floor(Math.random() * resp.words.length);
       if (randomNumbers.indexOf(r) === -1) randomNumbers.push(r);
     }
 
     for (i = 0; i < randomNumbers.length; i++) {
       wordsArray.unshift({
-        pl: words.words[randomNumbers[i]].pl,
-        en: words.words[randomNumbers[i]].en
+        pl: resp.words[randomNumbers[i]].pl,
+        en: resp.words[randomNumbers[i]].en
       });
     }
     const newSessionInfo = {

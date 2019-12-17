@@ -3,21 +3,35 @@ import Router from "next/router";
 import HomePage from "../features/components/Layout/HomePage";
 import { useMutation } from "@apollo/react-hooks";
 import REMOVE_SESSION from "../features/mutations/documentMutation";
-import { UPDATE_USER } from "../features/mutations/userMutation";
-import { isLogged, getSession } from "../helper";
+import {
+  UPDATE_SCORE_USER,
+  UPDATE_LEVEL_USER
+} from "../features/mutations/userMutation";
+import { isLogged, getSession, getScoreUser, levelScoreTable } from "../helper";
 import "bulma";
 import "./styles/reset.scss";
 import "./styles/customize.scss";
 
-const Resume = ({ userId, sessionInfo }) => {
+const Resume = ({ userInfo, sessionInfo, userScore }) => {
+  const { id: userId, difficulty } = userInfo;
   const { procentCorrectness, score } = sessionInfo.amounts;
   const [removeSession, { isDeleted }] = useMutation(REMOVE_SESSION);
-  const [updateUser, { isUpdatedUser }] = useMutation(UPDATE_USER);
+  const [updateScoreUser, { isUpdatedScoreUser }] = useMutation(
+    UPDATE_SCORE_USER
+  );
+  const [updateLevelUser, { isUpdatedLevelUser }] = useMutation(
+    UPDATE_LEVEL_USER
+  );
 
   useEffect(() => {
-    updateUser({ variables: { userId, score } });
+    const { level } = levelScoreTable(userScore, score, difficulty);
+    if (level !== null) {
+      updateLevelUser({ variables: { userId, level } });
+    }
+    updateScoreUser({ variables: { userId, score } });
     removeSession({ variables: { userId } });
   }, []);
+
   return (
     <HomePage>
       <div>
@@ -44,9 +58,10 @@ Resume.getInitialProps = async ctx => {
   const { res } = ctx;
   await isLogged(ctx, "/signin");
 
-  const { isSession, sessionInfo, userId } = await getSession(ctx);
+  const { score } = await getScoreUser(ctx);
+  const { isSessionEnd, sessionInfo, userInfo } = await getSession(ctx);
 
-  if (isSession) {
+  if (!isSessionEnd) {
     if (res) {
       res.writeHead(302, {
         Location: "/"
@@ -58,7 +73,8 @@ Resume.getInitialProps = async ctx => {
   }
   return {
     sessionInfo,
-    userId
+    userInfo,
+    userScore: score
   };
 };
 
