@@ -1,8 +1,8 @@
-const UserModel = require("./models/user.model");
-const WordModel = require("./models/word.model");
-const SessionModel = require("./models/session.model");
 const jwt = require("jsonwebtoken");
-const { secret } = require("./config");
+const UserModel = require("../models/user.model");
+const WordModel = require("../models/word.model");
+const SessionModel = require("../models/session.model");
+const { secret } = require("../config");
 
 const verifyLogging = (user, email, password) => {
   if (user) {
@@ -35,7 +35,6 @@ const createSession = args => {
   const { level, number, userId } = args;
 
   return WordModel.findOne({ level }).then(resp => {
-    console.log(resp);
     const randomNumbers = [];
     const wordsArray = [];
 

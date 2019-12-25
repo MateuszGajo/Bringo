@@ -7,7 +7,7 @@ const {
   createUser,
   updateSession,
   updateSessionStatistics
-} = require("../helper");
+} = require("./helper");
 
 const resolvers = {
   Query: {

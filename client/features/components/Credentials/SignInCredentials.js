@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { MdEmail, MdLock } from "react-icons/md";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faLock} from "@fortawesome/free-solid-svg-icons";
 import cx from "classnames";
 const SignIn = ({ creds, setCreds, loginErrors }) => {
 
@@ -29,7 +30,9 @@ const SignIn = ({ creds, setCreds, loginErrors }) => {
             value={inputs.email}
           />
           <span className="icon is-small is-left">
-            <MdEmail />
+          <FontAwesomeIcon
+            icon={faEnvelope}
+           />
           </span>
         </div>
         <p className="help is-danger">{emailError && emailError}</p>
@@ -49,7 +52,9 @@ const SignIn = ({ creds, setCreds, loginErrors }) => {
             value={inputs.password}
           />
           <span className="icon is-small is-left">
-            <MdLock />
+          <FontAwesomeIcon
+            icon={faLock}
+           />
           </span>
         </div>
         <p className="help is-danger">{passwordError && passwordError}</p>
