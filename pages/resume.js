@@ -43,12 +43,11 @@ const Resume = ({ userInfo, sessionInfo, userScore }) => {
         <h6 className="subtitle is-5 has-text-centered">
           Poprawność sesji: {procentCorrectness}%
         </h6>
-        <button
-          className="button is-horizontal-center is-flex"
-          onClick={() => Router.push("/")}
+        <a href="/"
+          className="button is-horizontal-center is-flex" 
         >
           Powrót do strony głównej
-        </button>
+        </a>
       </div>
     </HomePage>
   );

@@ -1,3 +1,13 @@
+const withPlugins = require('next-compose-plugins');
 const withSass = require("@zeit/next-sass");
 const withCss = require("@zeit/next-css");
-module.exports = withCss(withSass({}));
+const nextConfig = {
+    distDir: '.next',
+    pageExtensions: ['js'],
+    target: 'serverless',
+  };
+
+module.exports = withPlugins([
+    [withSass],
+    [withCss]
+  ], nextConfig);

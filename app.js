@@ -4,7 +4,6 @@ const cors = require("cors");
 const { ApolloServer } = require("apollo-server-express");
 const mongoose = require("mongoose");
 const next = require('next');
-const app = express();
 const {
   mongodb: { mongoURI }
 } = require("./config/keys");
@@ -15,39 +14,48 @@ const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler()
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+nextApp.prepare()
+.then(() => {
+  const app = express();
 
-app.use(cors());
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
 
-const db = mongoose.connect(
-  mongoURI,
-  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
-  () => {
-    console.log("db connected");
-  }
-);
+  app.use(cors());
 
-nextApp.prepare();
+  const db = mongoose.connect(
+    mongoURI,
+    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
+    () => {
+      console.log("db connected");
+    }
+  );
 
-app.use((req,res,next)=>{
-  req.db = db;
-  next();
-})
+  app.use((req,res,next)=>{
+    req.db = db;
+    next();
+  })
 
-app.use("/auth", authRoutes);
+  app.use("/auth", authRoutes);
 
-app.get('*',(req,res)=>{
-  handle(req,res);
-})
+  app.get('*',(req,res)=>{
+    handle(req,res);
+  })
 
-const server = new ApolloServer({
-  typeDefs,
-  resolvers
-});
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers
+  });
 
-server.applyMiddleware({ app });
+  server.applyMiddleware({ app });
 
-app.listen({ port: 4000 }, () => {
-  console.log(`Server working`);
-});
+  const port = process.env.PORT || 4000
+
+  app.listen({ port }, () => {
+    console.log(`Server working`);
+  });
+
+}).catch((ex) => {
+    console.error(ex.stack)
+    process.exit(1)
+  })
