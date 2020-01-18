@@ -33,14 +33,14 @@ const SignUp = () => {
             <p className="help is-danger-message">Popraw zaznaczone pola</p>
           ) : null}
           <MultiStep.StepWrapper>
-            <MultiStep.Step>
+            <MultiStep.Step dataStep="step">
               <MultiStep.SignUpCredentials
                 creds={creds}
                 setCreds={setCreds}
                 registerErrors={registerErrors}
               />
             </MultiStep.Step>
-            <MultiStep.Step>
+            <MultiStep.Step dataStep="step"> 
               <MultiStep.PersonalData
                 setUserInfo={setUserInfo}
                 userInfo={userInfo}

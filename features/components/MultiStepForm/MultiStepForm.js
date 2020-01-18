@@ -13,6 +13,7 @@ const Controls = () => {
     <>
       <button
         className="button button-form"
+        type="button"
         disabled={currentPage === 1}
         onClick={() => setCurrentPage(currentPage - 1)}
       >
@@ -20,13 +21,14 @@ const Controls = () => {
       </button>
       <button
         className="button button-form"
-        onClick={() => setCurrentPage(currentPage + 1)}
+        type="button"
+        onClick={() => {setCurrentPage(currentPage + 1); return false}}
         disabled={currentPage === numbersOfPages}
       >
         Następna
       </button>
       {currentPage === numbersOfPages && (
-        <button className="button button-form">Zarestruj się</button>
+        <button className="button button-form" type="submit">Zarestruj się</button>
       )}
     </>
   );

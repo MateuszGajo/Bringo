@@ -15,10 +15,12 @@ const PageWrapper = ({ children }) => {
 
   
   children.forEach(child => {
-    child.type.name === "Step" && numbersOfPages++;
+    console.log(child)
+    child.props.dataStep === "step" && numbersOfPages++;
   });
 
   useEffect(() => {
+    console.log(numbersOfPages)
     setNumbersOfPages(numbersOfPages);
   }, []);
 
