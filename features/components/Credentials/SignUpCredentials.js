@@ -35,7 +35,7 @@ const SignIn = ({ creds, setCreds, registerErrors }) => {
            />
           </span>
         </div>
-        <p className="help is-danger">{emailError && emailError}</p>
+        <p className="help is-danger-message">{emailError && emailError}</p>
       </div>
       <div className="field">
         <label className="label">Hasło</label>
@@ -56,7 +56,7 @@ const SignIn = ({ creds, setCreds, registerErrors }) => {
            />
           </span>
         </div>
-        <p className="help is-danger">{passwordError && passwordError}</p>
+        <p className="help is-danger-message">{passwordError && passwordError}</p>
       </div>
       <div className="field">
         <label className="label">Powtórz hasło</label>
@@ -77,7 +77,7 @@ const SignIn = ({ creds, setCreds, registerErrors }) => {
            />
           </span>
         </div>
-        <p className="help is-danger">
+        <p className="help is-danger-message">
           {confirmPasswordError && confirmPasswordError}
         </p>
       </div>

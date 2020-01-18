@@ -35,7 +35,7 @@ const SignIn = ({ creds, setCreds, loginErrors }) => {
            />
           </span>
         </div>
-        <p className="help is-danger">{emailError && emailError}</p>
+        <p className="help is-danger-message">{emailError && emailError}</p>
       </div>
 
       <div className="field">
@@ -57,9 +57,9 @@ const SignIn = ({ creds, setCreds, loginErrors }) => {
            />
           </span>
         </div>
-        <p className="help is-danger">{passwordError && passwordError}</p>
+        <p className="help is-danger-message">{passwordError && passwordError}</p>
       </div>
-      <p className="help is-danger">{connectionError && connectionError}</p>
+      <p className="help is-danger-message">{connectionError && connectionError}</p>
     </>
   );
 };
