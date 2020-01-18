@@ -64,11 +64,13 @@
   flex-direction: column;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
   background-color: white;
+  visibility: hidden;
   transform: translateX(110%);
   transition: transform 1s;
 }
 
 .navbar-mobile-menu .hamburger-menu.is-active {
+  visibility: visible;
   transform: translateX(0);
 }
 
