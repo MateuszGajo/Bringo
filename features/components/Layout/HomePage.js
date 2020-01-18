@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import cx from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faUser, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faUser, faAngleRight} from "@fortawesome/free-solid-svg-icons";
 import authContext from "../../context/authContext";
 import "./styles/homePage.scss";
 
@@ -52,29 +52,40 @@ const HomePage = ({ children }) => {
               "is-active": isOpenHamurger
             })}
           >
+            <div className="logo">
             <div className="close-nav">
               <FontAwesomeIcon
-                icon={faTimes}
-                size="3x"
-                color="#f65c78"
+                icon={faAngleRight}
+                size="2x"
                 onClick={() => setOpenHamurger(false)}
               />
             </div>
-            <div className="logo">
               <a className="is-size-1 title-color " href="/">
                 Bringo
               </a>
             </div>
             <div className="hamburger-menu-items">
-              <p className="user-name">
+              <div className="hamburger-menu-item">
                 <FontAwesomeIcon icon={faUser} size="lg" color="#11999e" />
-                <span>
+                <a className="user-name">
                   {firstName} {lastName}
-                </span>
-              </p>
+                </a>
+              </div>
+              <div className="hamburger-menu-item">
+              <a href="/">
+                Strona Główna
+                </a>
+              </div>
+              <div className="hamburger-menu-item">
+                <a href="/ranking">
+                Ranking
+                </a>
+              </div>
+              <div className="hamburger-menu-item">
               <a className="logout" onClick={() => deleteCookie("token")}>
                 Wyloguj się
               </a>
+              </div>
             </div>
           </div>
         </div>

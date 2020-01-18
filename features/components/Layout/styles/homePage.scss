@@ -12,7 +12,6 @@
 .logout {
   display: flex;
   align-items: center;
-  color: #40514e;
   padding-right: 10px;
 }
 .logout:hover {
@@ -74,12 +73,16 @@
 }
 
 .navbar-mobile-menu .hamburger-menu .close-nav {
+  position:absolute;
+  top:50%;
+  left:10px;
+  transform: translateY(-50%);
   display: flex;
-  justify-content: flex-end;
-  margin: 10px 10px;
+  align-items:center;
 }
 
 .navbar-mobile-menu .hamburger-menu .logo {
+  position:relative;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -89,21 +92,28 @@
 
 .navbar-mobile-menu .hamburger-menu .hamburger-menu-items {
   display: flex;
+  height:100%;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   font-size: 30px;
 }
 
-.navbar-mobile-menu .hamburger-menu .user-name {
-  padding-top: 40px;
+.navbar-mobile-menu .hamburger-menu .hamburger-menu-items .hamburger-menu-item{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  padding:15px 0;
 }
 
-.navbar-mobile-menu .hamburger-menu .user-name span {
+.navbar-mobile-menu .hamburger-menu .hamburger-menu-items .hamburger-menu-item >a{
+  color:#363636;
+  font-weight: 500;
+}
+
+
+.navbar-mobile-menu .hamburger-menu .hamburger-menu-item a.user-name {
   padding-left: 20px;
-}
-
-.navbar-mobile-menu .hamburger-menu a.logout {
-  padding-top: 40px;
 }
 
 @media (max-width: 1023px) {
@@ -113,6 +123,9 @@
 }
 
 @media (orientation: landscape) {
+  .navbar-mobile-menu .hamburger-menu .hamburger-menu-items .hamburger-menu-item >a{
+    font-size:22px;
+  }
   .navbar-mobile-menu .hamburger-menu .hamburger-menu-items {
     font-size: 20px;
   }
@@ -123,13 +136,5 @@
 
   .navbar-mobile-menu .hamburger-menu .logo {
     padding: 5px 0;
-  }
-
-  .navbar-mobile-menu .hamburger-menu .user-name {
-    padding-top: 20px;
-  }
-
-  .navbar-mobile-menu .hamburger-menu a.logout {
-    padding-top: 20px;
   }
 }
