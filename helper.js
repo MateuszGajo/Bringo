@@ -46,7 +46,7 @@ export const loadSession = async ctx => {
   const getWords = async () =>
     await ctx.apolloClient.query({
       query: GET_WORD,
-      variables: { level: userInfo.difficulty, number: 2, userId: userInfo.id }
+      variables: { level: userInfo.difficulty, number: 20, userId: userInfo.id }
     });
 
   response = await getSession();
