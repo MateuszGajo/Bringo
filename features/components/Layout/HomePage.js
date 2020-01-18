@@ -1,7 +1,11 @@
 import React, { useContext, useState } from "react";
 import cx from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faUser, faAngleRight} from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faUser,
+  faAngleRight
+} from "@fortawesome/free-solid-svg-icons";
 import authContext from "../../context/authContext";
 import "./styles/homePage.scss";
 
@@ -17,7 +21,7 @@ const HomePage = ({ children }) => {
       <nav className="main-navbar navbar-menu">
         <div className="navbar-start">
           <div className="navbar-brand">
-            <a className="item-navbar is-size-3 title-color" href="/">
+            <a className="item-navbar is-size-3 primary-color brand" href="/">
               Bringo
             </a>
           </div>
@@ -33,7 +37,7 @@ const HomePage = ({ children }) => {
         <div className="navbar-start">
           <div className="navbar-brand">
             <a
-              className="item-navbar is-size-3 title-color title-margin is-size-1"
+              className="item-navbar is-size-3 primary-color title-margin is-size-1"
               href="/"
             >
               Bringo
@@ -53,14 +57,14 @@ const HomePage = ({ children }) => {
             })}
           >
             <div className="logo">
-            <div className="close-nav">
-              <FontAwesomeIcon
-                icon={faAngleRight}
-                size="2x"
-                onClick={() => setOpenHamurger(false)}
-              />
-            </div>
-              <a className="is-size-1 title-color " href="/">
+              <div className="close-nav">
+                <FontAwesomeIcon
+                  icon={faAngleRight}
+                  size="2x"
+                  onClick={() => setOpenHamurger(false)}
+                />
+              </div>
+              <a className="is-size-1 primary-color " href="/">
                 Bringo
               </a>
             </div>
@@ -72,19 +76,15 @@ const HomePage = ({ children }) => {
                 </a>
               </div>
               <div className="hamburger-menu-item">
-              <a href="/">
-                Strona Główna
-                </a>
+                <a href="/">Strona Główna</a>
               </div>
               <div className="hamburger-menu-item">
-                <a href="/ranking">
-                Ranking
-                </a>
+                <a href="/ranking">Ranking</a>
               </div>
               <div className="hamburger-menu-item">
-              <a className="logout" onClick={() => deleteCookie("token")}>
-                Wyloguj się
-              </a>
+                <a className="logout" onClick={() => deleteCookie("token")}>
+                  Wyloguj się
+                </a>
               </div>
             </div>
           </div>

@@ -6,10 +6,10 @@ const AuthPage = ({ children }) => {
     <div className="is-fullheight columns is-gapless">
       <div className="column">
         <div className="is-fullheight box">
-          <h1 className="title is-1 title-color">Bringo</h1>
+          <h1 className="title is-1 primary-color">Bringo</h1>
           <h3 className="title is-3">Twój internetowy nauczyciel</h3>
           <h4 className="subtitle is-3">
-            Ucz się codziennie słówek z <b className="title-color">Bringo</b>
+            Ucz się codziennie słówek z <b className="primary-color">Bringo</b>
           </h4>
         </div>
       </div>
