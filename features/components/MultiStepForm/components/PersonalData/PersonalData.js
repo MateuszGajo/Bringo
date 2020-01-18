@@ -25,7 +25,7 @@ const UserInfo = ({ setUserInfo, userInfo, registerErrors}) => {
           onChange={handleInputChange}
           value={inputs.firstName}
         />
-        <p className="help is-danger">{firstNameError && firstNameError}</p>
+        <p className="help is-danger-message">{firstNameError && firstNameError}</p>
       </div>
       <div className="field">
         <label className="label">Nazwisko</label>
@@ -39,7 +39,7 @@ const UserInfo = ({ setUserInfo, userInfo, registerErrors}) => {
           onChange={handleInputChange}
           value={inputs.lastName}
         />
-        <p className="help is-danger">{lastNameError && lastNameError}</p>
+        <p className="help is-danger-message">{lastNameError && lastNameError}</p>
       </div>
       <div className="field">
         <label className="label">Numer Telefonu</label>
@@ -53,9 +53,9 @@ const UserInfo = ({ setUserInfo, userInfo, registerErrors}) => {
           onChange={handleInputChange}
           value={inputs.phoneNumber}
         />
-        <p className="help is-danger">{phoneNumberError && phoneNumberError}</p>
+        <p className="help is-danger-message">{phoneNumberError && phoneNumberError}</p>
       </div>
-      <p className="help is-danger">{connectionError && connectionError}</p>
+      <p className="help is-danger-message">{connectionError && connectionError}</p>
     </>
   );
 };

@@ -30,7 +30,7 @@ const SignUp = () => {
       <MultiStep.Wizard>
         <form onSubmit={handleSubmit}>
           {registerErrors.isFieldsError ? (
-            <p className="help is-danger">Popraw zaznaczone pola</p>
+            <p className="help is-danger-message">Popraw zaznaczone pola</p>
           ) : null}
           <MultiStep.StepWrapper>
             <MultiStep.Step>
