@@ -37,7 +37,7 @@ const HomePage = ({ children }) => {
         <div className="navbar-start">
           <div className="navbar-brand">
             <a
-              className="item-navbar is-size-3 primary-color title-margin is-size-1"
+              className="item-navbar is-size-3 primary-color title-margin brand"
               href="/"
             >
               Bringo
