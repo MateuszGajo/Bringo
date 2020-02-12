@@ -1,5 +1,6 @@
 .lerning-wrapper {
-  height: 100vh;
+  height: 100%;
+  display: -webkit-box;
   display: flex;
 }
 
@@ -10,6 +11,7 @@ h2.subtitle.is-2.words {
 
 form .button.check:hover {
   border-color: #667471;
+  -webkit-transform: scale(1.01);
   transform: scale(1.01);
 }
 
