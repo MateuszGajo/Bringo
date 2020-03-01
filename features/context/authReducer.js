@@ -60,7 +60,7 @@ const authReducer = (state, action) => {
         }
       };
 
-    case "VALIDED_FIELDS": {
+    case "VALIDATED_FIELDS": {
       return {
         ...state,
         registerErrors: {

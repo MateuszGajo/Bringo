@@ -68,12 +68,10 @@ export const loadSession = async ctx => {
     response = response.data.getSession;
     sessionInfo = response.sessionInfo;
   }
-  
+
   if (!isSession) {
-    console.log('jestem tu')
     response = await getWords();
-    
-    console.log(response);
+
     response = response.data.getWords;
     sessionInfo = response.sessionInfo;
   }

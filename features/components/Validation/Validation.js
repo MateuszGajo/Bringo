@@ -15,7 +15,7 @@ export const RegisterFormValidation = ({
   let phoneNumberMessage = "";
   let isValid = true;
 
-  const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
+  const emailRegex = /^([a-zA-Z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/;
   const numberRegex = /[\d]{9}/;
 
   if (!email) {
@@ -47,7 +47,7 @@ export const RegisterFormValidation = ({
   }
 
   if (!numberRegex.test(phoneNumber)) {
-    phoneNumberMessage = "Number musi składać się z 9 cyfr";
+    phoneNumberMessage = "Numer musi składać się z 9 cyfr";
     isValid = false;
   }
 
@@ -57,6 +57,6 @@ export const RegisterFormValidation = ({
   dispatch({ type: "FIRSTNAME_ERROR", msg: firstNameMessage });
   dispatch({ type: "LASTNAME_ERROR", msg: lastNameMessage });
   dispatch({ type: "PHONENUMBER_ERROR", msg: phoneNumberMessage });
-  isValid && dispatch({ type: "VALIDED_FIELDS" });
+  isValid && dispatch({ type: "VALIDATED_FIELDS" });
   return isValid;
 };

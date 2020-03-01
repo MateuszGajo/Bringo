@@ -1,4 +1,4 @@
-import React, { useReducer, useState, useEffect } from "react";
+import React, { useReducer } from "react";
 import { ApolloProvider } from "@apollo/react-hooks";
 import Router from "next/router";
 import jwt_deocde from "jwt-decode";
