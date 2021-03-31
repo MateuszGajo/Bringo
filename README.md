@@ -1,5 +1,5 @@
 # BRINGO:
-Small application for learning words
+app helps you learn new words.
 
 ## Technologies: 
 HTML, SASS, Bulma, React, Next.js, Node, Express, Apollo, GraphQL
